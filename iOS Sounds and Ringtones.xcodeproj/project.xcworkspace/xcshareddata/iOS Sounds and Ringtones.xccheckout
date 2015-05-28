@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B553DDFA-7F6A-4E8A-8E05-3804C7590F0F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iOS Sounds and Ringtones</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DFB41E5DDCDBD15304210FA71C102A8A5D76088E</key>
+		<string>https://github.com/CQH/iOS-Sounds-and-Ringtones.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS Sounds and Ringtones.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DFB41E5DDCDBD15304210FA71C102A8A5D76088E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/CQH/iOS-Sounds-and-Ringtones.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DFB41E5DDCDBD15304210FA71C102A8A5D76088E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DFB41E5DDCDBD15304210FA71C102A8A5D76088E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS%20Sounds%20and%20Ringtones</string>
+		</dict>
+	</array>
+</dict>
+</plist>
