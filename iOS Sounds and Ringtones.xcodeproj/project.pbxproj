@@ -14,7 +14,6 @@
 		4E1257391B16FCE9007D5BE2 /* iOS_Sounds_and_RingtonesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257381B16FCE9007D5BE2 /* iOS_Sounds_and_RingtonesTests.swift */; };
 		4E1257441B16FDBD007D5BE2 /* AllFilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257421B16FDBD007D5BE2 /* AllFilesTableViewController.swift */; };
 		4E1257451B16FDBD007D5BE2 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257431B16FDBD007D5BE2 /* RootTableViewController.swift */; };
-		4E1257471B16FE0C007D5BE2 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257461B16FE0C007D5BE2 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,7 +166,6 @@
 				TargetAttributes = {
 					4E12571C1B16FCE9007D5BE2 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 6L8KBL2A7Q;
 					};
 					4E1257311B16FCE9007D5BE2 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -221,7 +219,6 @@
 			files = (
 				4E1257441B16FDBD007D5BE2 /* AllFilesTableViewController.swift in Sources */,
 				4E1257231B16FCE9007D5BE2 /* AppDelegate.swift in Sources */,
-				4E1257471B16FE0C007D5BE2 /* README.md in Sources */,
 				4E1257451B16FDBD007D5BE2 /* RootTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
