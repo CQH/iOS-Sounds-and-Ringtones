@@ -1,6 +1,5 @@
 iOS Sounds and Ringtones
 =====================
-######Disclaimer
 This is a small project demonstrating of how to locate and use system sound files.  I hope this helps you.
 
 ##What it Does
