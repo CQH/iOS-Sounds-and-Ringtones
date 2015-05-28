@@ -5,8 +5,8 @@ This is a small project demonstrating of how to locate and use system sound file
 ##What it Does
 - Lists all of the pre-installed system sounds on an iOS device from the `/System/Library/Audio/UISounds` and `/Library/Ringtones` and their sub-folders.
 - Allows users to:
- - Plays the sounds when clicked.
- - Stop a sound from playing (by pressing the X in the corner)
+ - Click to play the sound listed.
+ - Stop a sound from playing (by pressing the X in the corner).
  - Swipe to bookmark sounds for quick reference.
  - Reorder or delete bookmarked sounds.
 
