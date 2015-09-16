@@ -127,7 +127,6 @@ class RootTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == SectionType.Bookmarks.rawValue {
             let filePath: String = appDelegate.bookmarkedFiles[indexPath.row]
-//            var SSID: SystemSoundID = 0
             let fileURL: NSURL = NSURL(fileURLWithPath: "\(filePath)")
             
             do {

@@ -46,10 +46,14 @@ This is a utility app for devlopers really.  Not for the general public.  I trie
 ##How to make the sounds play
 The key piece is really
 ````
-var SSID: SystemSoundID = 0
-var fileURL: NSURL = NSURL(fileURLWithPath: "\{directory}\{filename}.{extension}")!
-appDelegate.player = AVAudioPlayer(contentsOfURL: fileURL, error: nil)
-appDelegate.player.play()
+let filePath: String = appDelegate.bookmarkedFiles[indexPath.row]
+let fileURL: NSURL = NSURL(fileURLWithPath: "\{directory}\{filename}.{extension}")
+do {
+  appDelegate.player = try AVAudioPlayer(contentsOfURL: fileURL)
+  appDelegate.player.play()
+} catch {
+  NSLog("\(error)")
+}
 ````
 Remember that `appDelegate.player` was defined as `var player: AVAudioPlayer = AVAudioPlayer()` in the `AppDelegate`.
 
