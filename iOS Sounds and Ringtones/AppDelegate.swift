@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    //Yes, I know it's bad form to store variables here, but this is just a simple example app 😄
     /**User's bookmarked sound files*/
     var bookmarkedFiles: [String] = []
     

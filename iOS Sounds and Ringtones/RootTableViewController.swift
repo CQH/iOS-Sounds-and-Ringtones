@@ -109,16 +109,16 @@ class RootTableViewController: UITableViewController {
         switch indexPath.section {
         case SectionType.Bookmarks.rawValue:
             let filePath: String = appDelegate.bookmarkedFiles[indexPath.row]
-            let fileURL: NSURL = NSURL(fileURLWithPath: filePath)!
-            let fileName: String = filePath.lastPathComponent
-            cell = tableView.dequeueReusableCellWithIdentifier("bookmark", forIndexPath: indexPath) as! UITableViewCell
+            let fileURL: NSURL = NSURL(fileURLWithPath: filePath)
+            let fileName: String = fileURL.lastPathComponent! //filePath.lastPathComponent
+            cell = tableView.dequeueReusableCellWithIdentifier("bookmark", forIndexPath: indexPath) 
             let fileNameLabel: UILabel = cell.viewWithTag(1) as! UILabel
             let filePathLabel: UILabel = cell.viewWithTag(2) as! UILabel
             
             fileNameLabel.text = fileName
             filePathLabel.text = filePath
         case SectionType.AllFiles.rawValue:
-            cell = tableView.dequeueReusableCellWithIdentifier("all sounds", forIndexPath: indexPath) as! UITableViewCell
+            cell = tableView.dequeueReusableCellWithIdentifier("all sounds", forIndexPath: indexPath) 
         default: break
         }
         return cell
@@ -127,11 +127,15 @@ class RootTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == SectionType.Bookmarks.rawValue {
             let filePath: String = appDelegate.bookmarkedFiles[indexPath.row]
-            var SSID: SystemSoundID = 0
-            var fileURL: NSURL = NSURL(fileURLWithPath: "\(filePath)")!
+//            var SSID: SystemSoundID = 0
+            let fileURL: NSURL = NSURL(fileURLWithPath: "\(filePath)")
             
-            appDelegate.player = AVAudioPlayer(contentsOfURL: fileURL, error: nil)
-            appDelegate.player.play()
+            do {
+                appDelegate.player = try AVAudioPlayer(contentsOfURL: fileURL)
+                appDelegate.player.play()
+            } catch {
+                NSLog("\(error)")
+            }
         }
     }
     

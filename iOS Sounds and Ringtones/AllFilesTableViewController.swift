@@ -13,9 +13,9 @@ class AllFilesTableViewController: UITableViewController {
     // MARK: - Class Variables
     ///NSUserDefaults to hold the users favorite bookmarked files.
     var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-   
+    
     var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
+    
     ///The directories where sound files are located.
     var rootSoundDirectories: [String] = []
     
@@ -68,21 +68,27 @@ class AllFilesTableViewController: UITableViewController {
     - URLs: All of the contents of the directory (files and sub-directories).
     */
     func getDirectories() {
-        var err: NSError!
-        var fileManager: NSFileManager = NSFileManager()
+        let fileManager: NSFileManager = NSFileManager()
         for directory in rootSoundDirectories {
-            var directoryURL: NSURL = NSURL(fileURLWithPath: "\(directory)", isDirectory: true)!
-            if let URLs: [NSURL] = fileManager.contentsOfDirectoryAtURL(directoryURL, includingPropertiesForKeys: [NSURLIsDirectoryKey], options: NSDirectoryEnumerationOptions.allZeros, error: nil) as? [NSURL] {
-                for url in URLs {
-                    var isDirectory: AnyObject?
-                    if url.getResourceValue(&isDirectory, forKey: NSURLIsDirectoryKey, error: nil){
-                        if isDirectory! as! NSObject == 1 {
-                            directories.append("\(url.relativePath!)")
-                            soundFiles.append(directory: "\(url.relativePath!)", files: [])
+            let directoryURL: NSURL = NSURL(fileURLWithPath: "\(directory)", isDirectory: true)
+            
+            do {
+                if let URLs: [NSURL] = try fileManager.contentsOfDirectoryAtURL(directoryURL, includingPropertiesForKeys: [NSURLIsDirectoryKey], options: NSDirectoryEnumerationOptions()) {
+                    var urlIsaDirectory: ObjCBool = ObjCBool(false)
+                    for url in URLs {
+                        if fileManager.fileExistsAtPath(url.path!, isDirectory: &urlIsaDirectory) {
+                            if urlIsaDirectory {
+                                let directory: String = "\(url.relativePath!)"
+                                let files: [String] = []
+                                let newSoundFile: (directory: String, files: [String]) = (directory, files)
+                                directories.append("\(directory)")
+                                soundFiles.append(newSoundFile)
+                            }
                         }
                     }
-                    isDirectory = nil
                 }
+            } catch {
+                NSLog("\(error)")
             }
         }
     }
@@ -94,23 +100,25 @@ class AllFilesTableViewController: UITableViewController {
     */
     func loadSoundFiles() {
         for i in 0...directories.count-1 {
-            var err: NSError!
-            var fileManager: NSFileManager = NSFileManager()
-            var directoryURL: NSURL = NSURL(fileURLWithPath: directories[i], isDirectory: true)!
-            if let URLs: [NSURL] = fileManager.contentsOfDirectoryAtURL(directoryURL, includingPropertiesForKeys: [NSURLIsDirectoryKey], options: NSDirectoryEnumerationOptions.allZeros, error: nil) as? [NSURL] {
-                for url in URLs {
-                    var isDirectory: AnyObject?
-                    if url.getResourceValue(&isDirectory, forKey: NSURLIsDirectoryKey, error: nil){
-                        if isDirectory! as! NSObject == 0 {
-                            soundFiles[i].files.append("\(url.lastPathComponent!)")
+            let fileManager: NSFileManager = NSFileManager()
+            let directoryURL: NSURL = NSURL(fileURLWithPath: directories[i], isDirectory: true)
+            
+            do {
+                if let URLs: [NSURL] = try fileManager.contentsOfDirectoryAtURL(directoryURL, includingPropertiesForKeys: [NSURLIsDirectoryKey], options: NSDirectoryEnumerationOptions()) {
+                    var urlIsaDirectory: ObjCBool = ObjCBool(false)
+                    for url in URLs {
+                        if fileManager.fileExistsAtPath(url.path!, isDirectory: &urlIsaDirectory) {
+                            if !urlIsaDirectory {
+                                soundFiles[i].files.append("\(url.lastPathComponent!)")
+                            }
                         }
                     }
-                    isDirectory = nil
                 }
+            } catch {
+                NSLog("\(error)")
             }
         }
     }
-    
     
     // MARK: - Table view data source
     // MARK: Section Info
@@ -141,13 +149,13 @@ class AllFilesTableViewController: UITableViewController {
         let directory: String = soundFiles[indexPath.section].directory
         let fileName: String = soundFiles[indexPath.section].files[indexPath.row]
         let filePath: String = "\(directory)/\(fileName)"
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let fileNameLabel: UILabel = cell.viewWithTag(1) as! UILabel
         let filePathLabel: UILabel = cell.viewWithTag(2) as! UILabel
         
         fileNameLabel.text = fileName
         filePathLabel.text = filePath
-
+        
         return cell
     }
     
@@ -155,23 +163,24 @@ class AllFilesTableViewController: UITableViewController {
         //Play the sound
         let directory: String = soundFiles[indexPath.section].directory
         let fileName: String = soundFiles[indexPath.section].files[indexPath.row]
-        var SSID: SystemSoundID = 0
-        var fileURL: NSURL = NSURL(fileURLWithPath: "\(directory)/\(fileName)")!
-        
-        appDelegate.player = AVAudioPlayer(contentsOfURL: fileURL, error: nil)
-        appDelegate.player.play()
-    }
-    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete { // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert { // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        let fileURL: NSURL = NSURL(fileURLWithPath: "\(directory)/\(fileName)")
+        do {
+            appDelegate.player = try AVAudioPlayer(contentsOfURL: fileURL)
+            appDelegate.player.play()
+        } catch {
+            NSLog("\(error)")
         }
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-        var bookmarkAction: UITableViewRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Bookmark" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+        }
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let bookmarkAction: UITableViewRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Bookmark" , handler: { (action:UITableViewRowAction, indexPath:NSIndexPath) -> Void in
             let directory: String = self.soundFiles[indexPath.section].directory
             let fileName: String = self.soundFiles[indexPath.section].files[indexPath.row]
             let filePath: String = "\(directory)/\(fileName)"
