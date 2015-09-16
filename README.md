@@ -56,7 +56,7 @@ do {
 ````
 Remember that `appDelegate.player` was defined as `var player: AVAudioPlayer = AVAudioPlayer()` in the `AppDelegate`.  I know that storing things in the appDelegate isn't great. This is just a simple app so I went th simple route.
 
-All of the work in the app comes down to those 4 lines.
+All of the work in the app comes down to those few lines.
 
 I prefer `AVAudioPlayer.play()` to `AudioServicesPlaySystemSound()` because AVAudioPlayer can be stopped (among other features).  Once you start a sound using `AudioServicesPlaySystemSound()` it cannot be stopped.
 
