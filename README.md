@@ -46,7 +46,6 @@ This is a utility app for devlopers really.  Not for the general public.  I trie
 ##How to make the sounds play
 The key piece is really
 ````
-let filePath: String = appDelegate.bookmarkedFiles[indexPath.row]
 let fileURL: NSURL = NSURL(fileURLWithPath: "\{directory}\{filename}.{extension}")
 do {
   appDelegate.player = try AVAudioPlayer(contentsOfURL: fileURL)
