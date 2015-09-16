@@ -54,7 +54,7 @@ do {
   NSLog("\(error)")
 }
 ````
-Remember that `appDelegate.player` was defined as `var player: AVAudioPlayer = AVAudioPlayer()` in the `AppDelegate`.
+Remember that `appDelegate.player` was defined as `var player: AVAudioPlayer = AVAudioPlayer()` in the `AppDelegate`.  I know that storing things in the appDelegate isn't great. This is just a simple app so I went th simple route.
 
 All of the work in the app comes down to those 4 lines.
 
