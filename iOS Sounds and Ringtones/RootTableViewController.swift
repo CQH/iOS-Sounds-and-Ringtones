@@ -23,16 +23,26 @@ class RootTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        model.userDefaults.synchronize()
-        if let bookmarks: [String] = model.userDefaults.objectForKey("bookmarkedSoundFiles") as? [String] {
-            model.bookmarkedFiles = bookmarks
-            tableView.reloadData()
-        }
+        getBookmarks()
     }
     
     override func viewWillDisappear(animated: Bool) {
+        setBookmarks()
+    }
+    
+    ///Sets the bookmarked files into the user defaults.
+    func setBookmarks() {
         model.userDefaults.setObject(model.bookmarkedFiles, forKey: "bookmarkedSoundFiles")
         model.userDefaults.synchronize()
+    }
+    
+    ///Gets the user's bookmarked files and updates the table section.
+    func getBookmarks() {
+        model.userDefaults.synchronize()
+        if let bookmarks: [String] = model.userDefaults.objectForKey("bookmarkedSoundFiles") as? [String] {
+            model.bookmarkedFiles = bookmarks
+        }
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     // MARK: - Tables
@@ -42,27 +52,29 @@ class RootTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var returnValue: Int = 0
         switch section {
         case SectionType.Bookmarks.rawValue:
-            returnValue = model.bookmarkedFiles.count
+            return model.bookmarkedFiles.count
         case SectionType.AllFiles.rawValue:
-            returnValue = 1
-        default: break
+            return 1
+        default:
+            return 0
         }
-        return returnValue
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var returnValue: String = ""
         switch section {
         case SectionType.Bookmarks.rawValue:
-            returnValue = "Bookmarked Sound Files"
+            if model.bookmarkedFiles.count == 0 {
+                return "No bookmarked sound files"
+            } else {
+                return "\(model.bookmarkedFiles.count) bookmarked sound file(s)"
+            }
         case SectionType.AllFiles.rawValue:
-            returnValue = "All Sound Files"
-        default: break
+            return "All Sound Files"
+        default:
+            return ""
         }
-        return returnValue
     }
     
     // MARK: Cells
@@ -120,6 +132,8 @@ class RootTableViewController: UITableViewController {
         if editingStyle == .Delete {
             model.bookmarkedFiles.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            setBookmarks()
+            getBookmarks()
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }

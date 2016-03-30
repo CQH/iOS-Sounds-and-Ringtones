@@ -55,7 +55,7 @@
                             <outlet property="delegate" destination="HtY-5w-Lha" id="qgx-jk-ISu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All System Sounds" id="lig-gQ-eVt"/>
+                    <navigationItem key="navigationItem" title="All System Sounds" prompt="Swipe left on a file to bookmark it." id="lig-gQ-eVt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hLf-qy-Osv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
