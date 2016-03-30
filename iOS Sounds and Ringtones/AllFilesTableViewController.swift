@@ -8,7 +8,7 @@ class AllFilesTableViewController: UITableViewController {
     let model = Model.sharedInstance()
 
     ///The directories where sound files are located.
-    var rootSoundDirectories: [String] = []
+    let rootSoundDirectories: [String] = ["/Library/Ringtones", "/System/Library/Audio/UISounds"]
     
     ///Array to hold directories when we find them.
     var directories: [String] = []
@@ -19,7 +19,6 @@ class AllFilesTableViewController: UITableViewController {
     // MARK: - View Controller Setup
     override func viewDidLoad() {
         super.viewDidLoad()
-        rootSoundDirectories = ["/Library/Ringtones", "/System/Library/Audio/UISounds"]
         for directory in rootSoundDirectories {
             directories.append(directory)
             

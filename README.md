@@ -1,7 +1,7 @@
 iOS Sounds and Ringtones
 =====================
 ####Updated
-Updated September 2015 with Swift 2.0.
+Updated March 2016 with Swift 2.2.
 
 This is a small project demonstrating of how to locate and use system sound files.  I hope this helps you.
 
@@ -48,14 +48,12 @@ The key piece is really
 ````
 let fileURL: NSURL = NSURL(fileURLWithPath: "\{directory}\{filename}.{extension}")
 do {
-  appDelegate.player = try AVAudioPlayer(contentsOfURL: fileURL)
-  appDelegate.player.play()
+  model.audioPlayer = try AVAudioPlayer(contentsOfURL: fileURL)
+  model.audioPlayer.play()
 } catch {
   debugPrint("\(error)")
 }
 ````
-Remember that `appDelegate.player` was defined as `var player: AVAudioPlayer = AVAudioPlayer()` in the `AppDelegate`.  I know that storing things in the appDelegate isn't great. This is just a simple app so I went th simple route.
-
 All of the work in the app comes down to those few lines.
 
 I prefer `AVAudioPlayer.play()` to `AudioServicesPlaySystemSound()` because AVAudioPlayer can be stopped (among other features).  Once you start a sound using `AudioServicesPlaySystemSound()` it cannot be stopped.
