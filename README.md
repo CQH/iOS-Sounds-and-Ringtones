@@ -23,7 +23,7 @@ This is a utility app for devlopers really.  Not for the general public.  I trie
 #####Main Screen
 ![img_7065](https://cloud.githubusercontent.com/assets/5307697/14158849/85cdfeb6-f6a0-11e5-8e79-63331f69ba0c.PNG)
 
-#####List Screen (top)
+#####List Screen
 ![img_7066](https://cloud.githubusercontent.com/assets/5307697/14158854/8825acae-f6a0-11e5-97df-70d9d38ccd54.PNG    )
 
 ##How it works
