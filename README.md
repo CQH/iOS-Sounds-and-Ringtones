@@ -51,7 +51,7 @@ do {
   appDelegate.player = try AVAudioPlayer(contentsOfURL: fileURL)
   appDelegate.player.play()
 } catch {
-  NSLog("\(error)")
+  debugPrint("\(error)")
 }
 ````
 Remember that `appDelegate.player` was defined as `var player: AVAudioPlayer = AVAudioPlayer()` in the `AppDelegate`.  I know that storing things in the appDelegate isn't great. This is just a simple app so I went th simple route.

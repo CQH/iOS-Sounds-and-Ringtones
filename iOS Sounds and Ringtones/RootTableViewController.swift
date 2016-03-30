@@ -1,22 +1,14 @@
-//
-//  RootTableViewController.swift
-//  System Sounds Library
-//
-//  Created by Carleton Hall on 5/25/15.
-//  Copyright (c) 2015 Carleton Hall. All rights reserved.
-//
-
 import UIKit
 import AVFoundation
 
 class RootTableViewController: UITableViewController {
     // MARK: - Class Variables
-    var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
+    ///Model singleton
+    let model = Model.sharedInstance()
+
     ///Enumerator for different sections on the root page.
     enum SectionType: Int {
-        
         ///ENUM for all files section.
         case AllFiles = 0
         
@@ -24,47 +16,25 @@ class RootTableViewController: UITableViewController {
         case Bookmarks
     }
 
-    // MARK: Outlets
-    @IBOutlet var editButton: UIBarButtonItem!
-    @IBAction func editButtonAction(sender: AnyObject) {
-        if tableView.editing {
-            tableView.setEditing(false, animated: true)
-            editButton.title = "Edit"
-        } else {
-            tableView.setEditing(true, animated: true)
-            editButton.title = "Done"
-        }
-    }
-    
-    ///If the player is playing, stops it.
-    @IBAction func stopButton(sender: AnyObject) {
-        if appDelegate.player.playing {
-            appDelegate.player.stop()
-        }
-    }
-    
     // MARK: - ViewController Setup
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
-        userDefaults.synchronize()
-        if let bookmarks: [String] = userDefaults.objectForKey("bookmarkedSoundFiles") as? [String] {
-            appDelegate.bookmarkedFiles = bookmarks
+        model.userDefaults.synchronize()
+        if let bookmarks: [String] = model.userDefaults.objectForKey("bookmarkedSoundFiles") as? [String] {
+            model.bookmarkedFiles = bookmarks
             tableView.reloadData()
         }
     }
     
     override func viewWillDisappear(animated: Bool) {
-        userDefaults.setObject(appDelegate.bookmarkedFiles, forKey: "bookmarkedSoundFiles")
-        userDefaults.synchronize()
+        model.userDefaults.setObject(model.bookmarkedFiles, forKey: "bookmarkedSoundFiles")
+        model.userDefaults.synchronize()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
+    
     // MARK: - Tables
     // MARK: Sections
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -75,7 +45,7 @@ class RootTableViewController: UITableViewController {
         var returnValue: Int = 0
         switch section {
         case SectionType.Bookmarks.rawValue:
-            returnValue = appDelegate.bookmarkedFiles.count
+            returnValue = model.bookmarkedFiles.count
         case SectionType.AllFiles.rawValue:
             returnValue = 1
         default: break
@@ -108,7 +78,7 @@ class RootTableViewController: UITableViewController {
         var cell: UITableViewCell!
         switch indexPath.section {
         case SectionType.Bookmarks.rawValue:
-            let filePath: String = appDelegate.bookmarkedFiles[indexPath.row]
+            let filePath: String = model.bookmarkedFiles[indexPath.row]
             let fileURL: NSURL = NSURL(fileURLWithPath: filePath)
             let fileName: String = fileURL.lastPathComponent! //filePath.lastPathComponent
             cell = tableView.dequeueReusableCellWithIdentifier("bookmark", forIndexPath: indexPath) 
@@ -126,14 +96,14 @@ class RootTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == SectionType.Bookmarks.rawValue {
-            let filePath: String = appDelegate.bookmarkedFiles[indexPath.row]
+            let filePath: String = model.bookmarkedFiles[indexPath.row]
             let fileURL: NSURL = NSURL(fileURLWithPath: "\(filePath)")
             
             do {
-                appDelegate.player = try AVAudioPlayer(contentsOfURL: fileURL)
-                appDelegate.player.play()
+                model.audioPlayer = try AVAudioPlayer(contentsOfURL: fileURL)
+                model.audioPlayer.play()
             } catch {
-                NSLog("\(error)")
+                debugPrint("\(error)")
             }
         }
     }
@@ -148,7 +118,7 @@ class RootTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            appDelegate.bookmarkedFiles.removeAtIndex(indexPath.row)
+            model.bookmarkedFiles.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -156,15 +126,15 @@ class RootTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        let filePath: String = appDelegate.bookmarkedFiles[fromIndexPath.row]
+        let filePath: String = model.bookmarkedFiles[fromIndexPath.row]
         if (fromIndexPath.section == SectionType.Bookmarks.rawValue) && (toIndexPath.section == SectionType.Bookmarks.rawValue) {
             //If I'm moving from and to the same section (bookmarks), then proceed.
             if fromIndexPath.row > toIndexPath.row { //Moving items up in the list
-                appDelegate.bookmarkedFiles.insert(filePath, atIndex: toIndexPath.row)
-                appDelegate.bookmarkedFiles.removeAtIndex(fromIndexPath.row + 1)
+                model.bookmarkedFiles.insert(filePath, atIndex: toIndexPath.row)
+                model.bookmarkedFiles.removeAtIndex(fromIndexPath.row + 1)
             } else { //Moving items down in the list.
-                appDelegate.bookmarkedFiles.insert(filePath, atIndex: toIndexPath.row + 1)
-                appDelegate.bookmarkedFiles.removeAtIndex(fromIndexPath.row)
+                model.bookmarkedFiles.insert(filePath, atIndex: toIndexPath.row + 1)
+                model.bookmarkedFiles.removeAtIndex(fromIndexPath.row)
             }
         }
     }
