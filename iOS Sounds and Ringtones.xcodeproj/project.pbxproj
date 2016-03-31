@@ -14,8 +14,8 @@
 		4E1257391B16FCE9007D5BE2 /* iOS_Sounds_and_RingtonesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257381B16FCE9007D5BE2 /* iOS_Sounds_and_RingtonesTests.swift */; };
 		4E1257441B16FDBD007D5BE2 /* AllFilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257421B16FDBD007D5BE2 /* AllFilesTableViewController.swift */; };
 		4E1257451B16FDBD007D5BE2 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257431B16FDBD007D5BE2 /* RootTableViewController.swift */; };
+		4E4437861CAD78D900381FC9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4437851CAD78D900381FC9 /* Model.swift */; };
 		4E85AFF71BA90296006203EF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4E85AFF61BA90296006203EF /* LICENSE */; };
-		4ED6B7831CAC701B00A6CDC4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6B7821CAC701B00A6CDC4 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +41,8 @@
 		4E1257421B16FDBD007D5BE2 /* AllFilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllFilesTableViewController.swift; sourceTree = "<group>"; };
 		4E1257431B16FDBD007D5BE2 /* RootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		4E1257461B16FE0C007D5BE2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4E4437851CAD78D900381FC9 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4E85AFF61BA90296006203EF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		4ED6B7821CAC701B00A6CDC4 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = "../../I'm OK/I'm OK/Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 			children = (
 				4E1257261B16FCE9007D5BE2 /* Main.storyboard */,
 				4E1257221B16FCE9007D5BE2 /* AppDelegate.swift */,
-				4ED6B7821CAC701B00A6CDC4 /* Model.swift */,
+				4E4437851CAD78D900381FC9 /* Model.swift */,
 				4E1257431B16FDBD007D5BE2 /* RootTableViewController.swift */,
 				4E1257421B16FDBD007D5BE2 /* AllFilesTableViewController.swift */,
 				4E12572B1B16FCE9007D5BE2 /* LaunchScreen.xib */,
@@ -226,10 +226,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4437861CAD78D900381FC9 /* Model.swift in Sources */,
 				4E1257441B16FDBD007D5BE2 /* AllFilesTableViewController.swift in Sources */,
 				4E1257231B16FCE9007D5BE2 /* AppDelegate.swift in Sources */,
 				4E1257451B16FDBD007D5BE2 /* RootTableViewController.swift in Sources */,
-				4ED6B7831CAC701B00A6CDC4 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
