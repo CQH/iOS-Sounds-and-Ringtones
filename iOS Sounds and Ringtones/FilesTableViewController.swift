@@ -15,9 +15,6 @@ class FilesTableViewController: UITableViewController {
     ///App Controller singleton
     let appController = AppController.sharedInstance()
     
-    ///The directories where we will first start looking for files as well as sub directories.
-    let rootSoundDirectories: [String] = ["/Library/Ringtones", "/System/Library/Audio/UISounds"]
-    
     ///The directory where sound files are located.
     var directory: NSDictionary!
     
