@@ -4,73 +4,73 @@ import AVFoundation
 class RootTableViewController: UITableViewController {
     // MARK: - Class Variables
     
-    ///Model singleton
-    let model = Model.sharedInstance()
+    ///App Controller singleton
+    let appController = AppController.sharedInstance()
 
     ///Enumerator for different sections on the root page.
     enum SectionType: Int {
         ///ENUM for all files section.
-        case AllFiles = 0
+        case allFiles = 0
         
         ///ENUM for Bookmarks section.
-        case Bookmarks
+        case bookmarks
     }
 
     // MARK: - ViewController Setup
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         getBookmarks()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         setBookmarks()
     }
     
     ///Sets the bookmarked files into the user defaults.
     func setBookmarks() {
-        model.userDefaults.setObject(model.bookmarkedFiles, forKey: "bookmarkedSoundFiles")
-        model.userDefaults.synchronize()
+        appController.userDefaults.set(appController.bookmarkedFiles, forKey: "bookmarkedSoundFiles")
+        appController.userDefaults.synchronize()
     }
     
     ///Gets the user's bookmarked files and updates the table section.
     func getBookmarks() {
-        model.userDefaults.synchronize()
-        if let bookmarks: [String] = model.userDefaults.objectForKey("bookmarkedSoundFiles") as? [String] {
-            model.bookmarkedFiles = bookmarks
+        appController.userDefaults.synchronize()
+        if let bookmarks: [String] = appController.userDefaults.object(forKey: "bookmarkedSoundFiles") as? [String] {
+            appController.bookmarkedFiles = bookmarks
         }
-        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        tableView.reloadSections(IndexSet(integer: 1), with: .none)
     }
     
     // MARK: - Tables
     // MARK: Sections
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case SectionType.Bookmarks.rawValue:
-            return model.bookmarkedFiles.count
-        case SectionType.AllFiles.rawValue:
+        case SectionType.bookmarks.rawValue:
+            return appController.bookmarkedFiles.count
+        case SectionType.allFiles.rawValue:
             return 1
         default:
             return 0
         }
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case SectionType.Bookmarks.rawValue:
-            if model.bookmarkedFiles.count == 0 {
+        case SectionType.bookmarks.rawValue:
+            if appController.bookmarkedFiles.count == 0 {
                 return "No bookmarked sound files"
             } else {
-                return "\(model.bookmarkedFiles.count) bookmarked sound file(s)"
+                return "\(appController.bookmarkedFiles.count) bookmarked sound file(s)"
             }
-        case SectionType.AllFiles.rawValue:
+        case SectionType.allFiles.rawValue:
             return "All Sound Files"
         default:
             return ""
@@ -79,92 +79,89 @@ class RootTableViewController: UITableViewController {
     
     // MARK: Cells
 
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
-        switch indexPath.section {
-        case SectionType.Bookmarks.rawValue:
-            let filePath: String = model.bookmarkedFiles[indexPath.row]
-            let fileURL: NSURL = NSURL(fileURLWithPath: filePath)
-            let fileName: String = fileURL.lastPathComponent! //filePath.lastPathComponent
-            cell = tableView.dequeueReusableCellWithIdentifier("bookmark", forIndexPath: indexPath) 
-            let fileNameLabel: UILabel = cell.viewWithTag(1) as! UILabel
-            let filePathLabel: UILabel = cell.viewWithTag(2) as! UILabel
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == SectionType.bookmarks.rawValue {
+            let filePath: String = appController.bookmarkedFiles[indexPath.row]
+            let fileURL: URL = URL(fileURLWithPath: filePath)
+            let fileName: String = fileURL.lastPathComponent
             
-            fileNameLabel.text = fileName
-            filePathLabel.text = filePath
-        case SectionType.AllFiles.rawValue:
-            cell = tableView.dequeueReusableCellWithIdentifier("all sounds", forIndexPath: indexPath) 
-        default: break
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sound", for: indexPath) as! SoundTableViewCell
+            
+            cell.fileNameLabel.text = fileName
+            cell.filePathLabel.text = filePath
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "all sounds", for: indexPath)
+            return cell
         }
-        return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == SectionType.Bookmarks.rawValue {
-            let filePath: String = model.bookmarkedFiles[indexPath.row]
-            let fileURL: NSURL = NSURL(fileURLWithPath: "\(filePath)")
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == SectionType.bookmarks.rawValue {
+            let filePath: String = appController.bookmarkedFiles[indexPath.row]
+            let fileURL: URL = URL(fileURLWithPath: "\(filePath)")
             
             do {
-                model.audioPlayer = try AVAudioPlayer(contentsOfURL: fileURL)
-                model.audioPlayer.play()
+                appController.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+                appController.audioPlayer.play()
             } catch {
                 debugPrint("\(error)")
             }
         }
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section == SectionType.Bookmarks.rawValue {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == SectionType.bookmarks.rawValue {
             return true
         } else {
             return false
         }
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            model.bookmarkedFiles.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            appController.bookmarkedFiles.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             setBookmarks()
             getBookmarks()
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        let filePath: String = model.bookmarkedFiles[fromIndexPath.row]
-        if (fromIndexPath.section == SectionType.Bookmarks.rawValue) && (toIndexPath.section == SectionType.Bookmarks.rawValue) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
+        let filePath: String = appController.bookmarkedFiles[fromIndexPath.row]
+        if (fromIndexPath.section == SectionType.bookmarks.rawValue) && (toIndexPath.section == SectionType.bookmarks.rawValue) {
             //If I'm moving from and to the same section (bookmarks), then proceed.
             if fromIndexPath.row > toIndexPath.row { //Moving items up in the list
-                model.bookmarkedFiles.insert(filePath, atIndex: toIndexPath.row)
-                model.bookmarkedFiles.removeAtIndex(fromIndexPath.row + 1)
+                appController.bookmarkedFiles.insert(filePath, at: toIndexPath.row)
+                appController.bookmarkedFiles.remove(at: fromIndexPath.row + 1)
             } else { //Moving items down in the list.
-                model.bookmarkedFiles.insert(filePath, atIndex: toIndexPath.row + 1)
-                model.bookmarkedFiles.removeAtIndex(fromIndexPath.row)
+                appController.bookmarkedFiles.insert(filePath, at: toIndexPath.row + 1)
+                appController.bookmarkedFiles.remove(at: fromIndexPath.row)
             }
         }
     }
     
     // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section == SectionType.Bookmarks.rawValue {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == SectionType.bookmarks.rawValue {
             return true
         } else {
             return false
         }
     }
     
-    override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
-        if proposedDestinationIndexPath.section == SectionType.AllFiles.rawValue {
-            return NSIndexPath(forRow: 0, inSection: SectionType.Bookmarks.rawValue)
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if proposedDestinationIndexPath.section == SectionType.allFiles.rawValue {
+            return IndexPath(row: 0, section: SectionType.bookmarks.rawValue)
         }
         return proposedDestinationIndexPath
     }

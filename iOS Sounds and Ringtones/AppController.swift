@@ -1,7 +1,7 @@
 import UIKit
 import AVFoundation
 
-class Model: NSObject {
+class AppController: NSObject {
     ///Audio player responsible for playing sound files.
     var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
@@ -9,11 +9,11 @@ class Model: NSObject {
     var bookmarkedFiles: [String] = []
     
     ///User defaults
-    var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    class func sharedInstance() -> Model {
-        return modelSingletonGlobal
+    var userDefaults: UserDefaults = UserDefaults.standard
+    class func sharedInstance() -> AppController {
+        return appControllerSingletonGlobal
     }
 }
 
 ///Model singleton so that we can refer to this from throughout the app.
-let modelSingletonGlobal = Model()
+let appControllerSingletonGlobal = AppController()

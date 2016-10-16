@@ -10,11 +10,13 @@
 		4E1257231B16FCE9007D5BE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257221B16FCE9007D5BE2 /* AppDelegate.swift */; };
 		4E1257281B16FCE9007D5BE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E1257261B16FCE9007D5BE2 /* Main.storyboard */; };
 		4E12572A1B16FCE9007D5BE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E1257291B16FCE9007D5BE2 /* Images.xcassets */; };
-		4E12572D1B16FCE9007D5BE2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E12572B1B16FCE9007D5BE2 /* LaunchScreen.xib */; };
 		4E1257391B16FCE9007D5BE2 /* iOS_Sounds_and_RingtonesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257381B16FCE9007D5BE2 /* iOS_Sounds_and_RingtonesTests.swift */; };
-		4E1257441B16FDBD007D5BE2 /* AllFilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257421B16FDBD007D5BE2 /* AllFilesTableViewController.swift */; };
 		4E1257451B16FDBD007D5BE2 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1257431B16FDBD007D5BE2 /* RootTableViewController.swift */; };
-		4E4437861CAD78D900381FC9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4437851CAD78D900381FC9 /* Model.swift */; };
+		4E43CB5C1DB2D0070067A8DF /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E43CB5B1DB2D0070067A8DF /* SoundTableViewCell.swift */; };
+		4E43CB5E1DB2DA2E0067A8DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E43CB5D1DB2DA2E0067A8DF /* LaunchScreen.storyboard */; };
+		4E4437861CAD78D900381FC9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4437851CAD78D900381FC9 /* AppController.swift */; };
+		4E7CA3E51DB2DC650035FBB3 /* DirectoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7CA3E41DB2DC650035FBB3 /* DirectoriesTableViewController.swift */; };
+		4E7CA3E71DB2DC760035FBB3 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7CA3E61DB2DC760035FBB3 /* FilesTableViewController.swift */; };
 		4E85AFF71BA90296006203EF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4E85AFF61BA90296006203EF /* LICENSE */; };
 /* End PBXBuildFile section */
 
@@ -34,14 +36,16 @@
 		4E1257221B16FCE9007D5BE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E1257271B16FCE9007D5BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4E1257291B16FCE9007D5BE2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4E12572C1B16FCE9007D5BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4E1257321B16FCE9007D5BE2 /* iOS Sounds and RingtonesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Sounds and RingtonesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E1257371B16FCE9007D5BE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E1257381B16FCE9007D5BE2 /* iOS_Sounds_and_RingtonesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Sounds_and_RingtonesTests.swift; sourceTree = "<group>"; };
-		4E1257421B16FDBD007D5BE2 /* AllFilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllFilesTableViewController.swift; sourceTree = "<group>"; };
 		4E1257431B16FDBD007D5BE2 /* RootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		4E1257461B16FE0C007D5BE2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4E4437851CAD78D900381FC9 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		4E43CB5B1DB2D0070067A8DF /* SoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
+		4E43CB5D1DB2DA2E0067A8DF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4E4437851CAD78D900381FC9 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		4E7CA3E41DB2DC650035FBB3 /* DirectoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoriesTableViewController.swift; sourceTree = "<group>"; };
+		4E7CA3E61DB2DC760035FBB3 /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
 		4E85AFF61BA90296006203EF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,10 +92,12 @@
 			children = (
 				4E1257261B16FCE9007D5BE2 /* Main.storyboard */,
 				4E1257221B16FCE9007D5BE2 /* AppDelegate.swift */,
-				4E4437851CAD78D900381FC9 /* Model.swift */,
+				4E4437851CAD78D900381FC9 /* AppController.swift */,
 				4E1257431B16FDBD007D5BE2 /* RootTableViewController.swift */,
-				4E1257421B16FDBD007D5BE2 /* AllFilesTableViewController.swift */,
-				4E12572B1B16FCE9007D5BE2 /* LaunchScreen.xib */,
+				4E7CA3E41DB2DC650035FBB3 /* DirectoriesTableViewController.swift */,
+				4E7CA3E61DB2DC760035FBB3 /* FilesTableViewController.swift */,
+				4E43CB5B1DB2D0070067A8DF /* SoundTableViewCell.swift */,
+				4E43CB5D1DB2DA2E0067A8DF /* LaunchScreen.storyboard */,
 				4E1257291B16FCE9007D5BE2 /* Images.xcassets */,
 				4E1257201B16FCE9007D5BE2 /* Supporting Files */,
 			);
@@ -169,14 +175,17 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Carleton Hall";
 				TargetAttributes = {
 					4E12571C1B16FCE9007D5BE2 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 6L8KBL2A7Q;
+						LastSwiftMigration = 0800;
 					};
 					4E1257311B16FCE9007D5BE2 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 4E12571C1B16FCE9007D5BE2;
 					};
 				};
@@ -206,8 +215,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1257281B16FCE9007D5BE2 /* Main.storyboard in Resources */,
-				4E12572D1B16FCE9007D5BE2 /* LaunchScreen.xib in Resources */,
 				4E85AFF71BA90296006203EF /* LICENSE in Resources */,
+				4E43CB5E1DB2DA2E0067A8DF /* LaunchScreen.storyboard in Resources */,
 				4E12572A1B16FCE9007D5BE2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,10 +235,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E4437861CAD78D900381FC9 /* Model.swift in Sources */,
-				4E1257441B16FDBD007D5BE2 /* AllFilesTableViewController.swift in Sources */,
+				4E43CB5C1DB2D0070067A8DF /* SoundTableViewCell.swift in Sources */,
+				4E4437861CAD78D900381FC9 /* AppController.swift in Sources */,
 				4E1257231B16FCE9007D5BE2 /* AppDelegate.swift in Sources */,
 				4E1257451B16FDBD007D5BE2 /* RootTableViewController.swift in Sources */,
+				4E7CA3E51DB2DC650035FBB3 /* DirectoriesTableViewController.swift in Sources */,
+				4E7CA3E71DB2DC760035FBB3 /* FilesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,14 +271,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		4E12572B1B16FCE9007D5BE2 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4E12572C1B16FCE9007D5BE2 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -284,8 +287,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -308,7 +313,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -329,8 +334,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -346,9 +353,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -359,12 +367,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6L8KBL2A7Q;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = "iOS Sounds and Ringtones/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.carletonhall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -373,11 +383,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6L8KBL2A7Q;
 				INFOPLIST_FILE = "iOS Sounds and Ringtones/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.carletonhall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -385,10 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -397,6 +406,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.carletonhall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS Sounds and Ringtones.app/iOS Sounds and Ringtones";
 			};
 			name = Debug;
@@ -405,14 +415,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "iOS Sounds and RingtonesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.carletonhall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS Sounds and Ringtones.app/iOS Sounds and Ringtones";
 			};
 			name = Release;

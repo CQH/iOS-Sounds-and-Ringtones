@@ -1,7 +1,7 @@
 iOS Sounds and Ringtones
 =====================
 ####Updated
-Updated March 2016 with Swift 2.2.
+Updated October 2016 with Swift 3.0 with a base version of iOS 10.
 
 This is a small project demonstrating of how to locate and use system sound files.  I hope this helps you.
 
@@ -9,8 +9,7 @@ This is a small project demonstrating of how to locate and use system sound file
 - Lists all of the pre-installed system sounds on an iOS device from the `/System/Library/Audio/UISounds` and `/Library/Ringtones` and their sub-folders.
 - Allows users to:
  - Click to play the sound listed.
- - Stop a sound from playing (by pressing the X in the corner).
- - Swipe to bookmark sounds for quick reference.
+ - Swipe from left to right to bookmark sounds for quick reference.
  - Reorder or delete bookmarked sounds.
 
 Unfortunately, this app WILL NOT WORK in the iOS simulator.  You must run it on an iOS device (iPhone, iPad, iPod Touch).
@@ -36,7 +35,7 @@ This is a utility app for devlopers really.  Not for the general public.  I trie
 
 ####Backend
 - The app starts in the `/System/Library/Audio/UISounds` and `/Library/Ringtones` folders and looks for any sub-directories on that level and puts them all in an array.  
-- The app goes to each directory in that array a finds the sound files in each and saves them all in a `(String, [String])` tuple array for programmatic access.
+- The app goes to each directory in that array a finds the sound files in each and saves them all in a `[NSDictionary]` array of dictionaries for programmatic access.
 - Bookmarked files are saved to the `NSUserDefaults` on `viewWillDisappear` and loaded on `viewWillAppear`.
 
 
@@ -45,15 +44,13 @@ The key piece is really
 ````
 let fileURL: NSURL = NSURL(fileURLWithPath: "\{directory}\{filename}.{extension}")
 do {
-  model.audioPlayer = try AVAudioPlayer(contentsOfURL: fileURL)
-  model.audioPlayer.play()
+    appController.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+    appController.audioPlayer.play()
 } catch {
-  debugPrint("\(error)")
+    debugPrint("\(error)")
 }
 ````
 All of the work in the app comes down to those few lines.
-
-I prefer `AVAudioPlayer.play()` to `AudioServicesPlaySystemSound()` because AVAudioPlayer can be stopped (among other features).  Once you start a sound using `AudioServicesPlaySystemSound()` it cannot be stopped.
 
 ##References
 This was inspired by the [iOSSystemSoundsLibrary by TUNER88](https://github.com/TUNER88/iOSSystemSoundsLibrary).
