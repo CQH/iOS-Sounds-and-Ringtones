@@ -2,6 +2,7 @@ iOS Sounds and Ringtones
 =====================
 ####Updated
 Updated October 2016 with Swift 3.0 with a base version of iOS 10.
+Updated April 2017 with adjustment to allow sounds to play when mute switch is on.
 
 This is a small project demonstrating of how to locate and use system sound files.  I hope this helps you.
 

@@ -20,6 +20,12 @@ class RootTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+
+        do { //Enable the device to play even when the mute switch is on. This may not be necessary for all devices. Thanks to Philip van Allen for this suggestion.
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            debugPrint("\(error)")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
