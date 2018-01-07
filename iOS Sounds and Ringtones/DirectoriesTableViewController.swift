@@ -29,6 +29,11 @@ class DirectoriesTableViewController: UITableViewController {
     // MARK: - View Controller Setup
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		if #available(iOS 11.0, *) {
+			self.navigationItem.largeTitleDisplayMode = .always
+		}
+		
         for directory in rootSoundDirectories { //seed the directories we know about.
             let newDirectory: NSMutableDictionary = [
                 "path" : "\(directory)",

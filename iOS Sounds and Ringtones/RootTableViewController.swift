@@ -19,6 +19,12 @@ class RootTableViewController: UITableViewController {
     // MARK: - ViewController Setup
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		if #available(iOS 11.0, *) {
+			self.navigationController?.navigationBar.prefersLargeTitles = true
+			self.navigationItem.largeTitleDisplayMode = .never
+		}
+		
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         do { //Enable the device to play even when the mute switch is on. This may not be necessary for all devices. Thanks to Philip van Allen for this suggestion.
