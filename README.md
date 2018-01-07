@@ -7,8 +7,6 @@ iOS Sounds and Ringtones
 * Uses iOS 11 large titles
 * App now supports landscape mode and iPad
 
--
-
 This is a small project demonstrating of how to locate and use system sound files.  I hope this helps you.
 
 ## What it Does
