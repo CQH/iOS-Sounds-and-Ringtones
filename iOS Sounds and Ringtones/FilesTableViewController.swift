@@ -23,7 +23,10 @@ class FilesTableViewController: UITableViewController {
     
     // MARK: - View Controller Setup
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+		if #available(iOS 11.0, *) {
+			self.navigationItem.largeTitleDisplayMode = .always
+		}
         files = directory["files"] as! [String]
     }
     
